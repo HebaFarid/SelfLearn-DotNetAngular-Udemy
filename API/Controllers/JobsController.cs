@@ -1,18 +1,17 @@
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using API.Dtos;
+using API.Errors;
 using AutoMapper;
 using Core.Entities;
 using Core.Interfaces;
 using Core.Specifications;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class JobsController : ControllerBase
+    public class JobsController : BaseApiController
     {
         private readonly IGenericRepository<Job> _jobsRepo;
         private readonly IGenericRepository<JobCategory> _categoriesRepo;
@@ -36,11 +35,15 @@ namespace API.Controllers
         }
 
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
         public async Task<ActionResult<JobToReturnDto>> GetJob(int id)
         {
             var spec = new JobsWithCategoriesSpecification(id);
 
             var job = await _jobsRepo.GetEntityWithSpec(spec);
+
+            if(job == null) return NotFound(new ApiResponse(404));
 
             return _mapper.Map<Job, JobToReturnDto>(job);
         }
