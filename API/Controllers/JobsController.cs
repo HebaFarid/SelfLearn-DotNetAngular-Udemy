@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.Dtos;
 using API.Errors;
+using API.Helpers;
 using AutoMapper;
 using Core.Entities;
 using Core.Interfaces;
@@ -25,13 +26,15 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IReadOnlyList<JobToReturnDto>>> GetJobs()
+        public async Task<ActionResult<Pagination<JobToReturnDto>>> GetJobs([FromQuery]JobsSpecParams jobParams)
         {
-            var spec = new JobsWithCategoriesSpecification();
-
+            var spec = new JobsWithCategoriesSpecification(jobParams);
+            var countSpec = new JobWithFiltersForCountSpecification(jobParams);
+            var totalCount = await _jobsRepo.CountAsync(countSpec);
             var jobs = await _jobsRepo.ListAsync(spec);
+            var data = _mapper.Map<IReadOnlyList<Job>, IReadOnlyList<JobToReturnDto>>(jobs);
 
-            return Ok(_mapper.Map<IReadOnlyList<Job>, IReadOnlyList<JobToReturnDto>>(jobs));
+            return Ok(new Pagination<JobToReturnDto>(jobParams.PageIndex, jobParams.PageSize, totalCount, data));
         }
 
         [HttpGet("{id}")]
