@@ -1,0 +1,15 @@
+<div class="card h-100 shadow-sm">
+    <img src="/assets/images/hero1.jpg" alt="{{job.title}}" class="img-fluid bg-light">   
+    <div class="card-body d-flex flex-column">
+        <a routerLink="/jobs/{{job.id}}">
+            <h6 class="text-uppercase">{{job.title}}</h6>
+        </a>
+        <span class="mb-2">{{job.companyName}}</span>
+        <span class="mb-2">{{job.location}}</span>
+        <p class="card-text">{{job.description}}</p>
+        <div class="btn-group mt-auto">
+            <button type="button" class="btn btn-outline-secondary" routerLink="/jobs/{{job.id}}">View</button>
+            <button type="button" class="btn btn-outline-secondary">Edit</button>
+        </div>
+    </div>
+</div>

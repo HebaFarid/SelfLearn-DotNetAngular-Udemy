@@ -1,0 +1,14 @@
+<div class="card h-100 shadow-sm">
+    <img src="/assets/images/hero3.jpg" alt="{{resume.name}}" class="img-fluid bg-light">   
+    <div class="card-body d-flex flex-column">
+        <a routerLink="/resumes/{{resume.id}}">
+            <h6 class="text-uppercase">{{resume.name}}</h6>
+        </a>
+        <span class="mb-2">{{resume.address}}</span>
+        <p class="card-text">{{resume.experience}}</p>
+        <div class="btn-group mt-auto">
+            <button type="button" class="btn btn-outline-secondary" routerLink="/resumes/{{resume.id}}">View</button>
+            <button type="button" class="btn btn-outline-secondary">Edit</button>
+        </div>
+    </div>
+</div>

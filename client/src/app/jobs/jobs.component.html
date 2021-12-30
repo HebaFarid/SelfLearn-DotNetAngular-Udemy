@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="row">
+        <section class="col-3">
+            <h5 class="text-warning ml-3">Categories</h5>
+            <ul class="list-group my-3">
+                <li class="list-group-item" aria-current="true" 
+                    *ngFor="let category of categories"
+                    [class.active]="category.id === this.jobParams.categoryId"
+                    [value]="category.id"
+                    (click)="onCategorySelected(category.id)"
+                >{{category.name}}</li>
+              </ul>
+        </section>
+        <section class="col-9">
+            <div class="d-flex justify-content-between align-items-center">
+                
+                <app-paging-header
+                    [pageNumber]="this.jobParams.pageIndex"
+                    [pageSize]="this.jobParams.pageSize"
+                    [totalCount]="this.totalCount"
+                ></app-paging-header>
+
+                <div class="form-inline mt-2">
+                    <input (keyup.enter)="onSearch()" class="form-control mr-2" type="text" #search style="width: 300px;" placeholder="Search">
+                    <button (click)="onSearch()" class="btn btn-outline-primary my-2">Search</button>
+                    <button (click)="onReset()" class="btn btn-outline-success ml-2 my-2">Reset</button>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-4 mb-4" *ngFor="let item of jobs">
+                  <app-job-item [job]="item"></app-job-item>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-center" *ngIf="this.totalCount && this.totalCount > 0">
+                <app-pager
+                    [totalCount]="this.totalCount"
+                    [pageSize]="this.jobParams.pageSize"
+                    (pageChanged)="onPageChanged($event)"
+                ></app-pager>
+            </div>
+        </section>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+<div *ngIf="job">
+    <div class="row">
+        <div class="col-6">
+            <img src="/assets/images/hero3.jpg" alt="{{job.title}}" class="img-fluid w-100">
+        </div>
+        <div class="col-6">
+            <h1>{{job.title}}</h1>
+            <h5>Company Name: {{job.companyName}}</h5>
+            <p>Location: {{job.location}}</p>
+            <h6>Salary: {{job.salary |currency}}</h6>
+            <p>Job Category: {{job.jobCategory}}</p>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-12 ml-3">
+            <h4>Description</h4>
+            <p>{{job.description}}</p>
+        </div>
+    </div>
+</div>
