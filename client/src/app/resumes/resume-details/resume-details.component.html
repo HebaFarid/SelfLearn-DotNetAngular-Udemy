@@ -1,26 +1,28 @@
-<div *ngIf="resume">
-    <div class="row">
-        <div class="col-6">
-            <img src="/assets/images/hero1.jpg" alt="{{resume.name}}" class="img-fluid w-100">
+<div class="container mt-5">
+    <div *ngIf="resume">
+        <div class="row">
+            <div class="col-6">
+                <img src="/assets/images/hero1.jpg" alt="{{resume.name}}" class="img-fluid w-100">
+            </div>
+            <div class="col-6">
+                <h1>{{resume.name}}</h1>
+                <h5>Age: {{resume.age}}</h5>
+                <h5>Mobile Number: {{resume.mobileNumber}}</h5>
+                <p>Location: {{resume.address}}</p>
+                <p>Category: {{resume.resumeCategory}}</p>
+            </div>
         </div>
-        <div class="col-6">
-            <h1>{{resume.name}}</h1>
-            <h5>Age: {{resume.age}}</h5>
-            <h5>Mobile Number: {{resume.mobileNumber}}</h5>
-            <p>Location: {{resume.address}}</p>
-            <p>Category: {{resume.resumeCategory}}</p>
+        <div class="row mt-5">
+            <div class="col-12 ml-3">
+                <h4>Education</h4>
+                <p>{{resume.education}}</p>
+            </div>
         </div>
-    </div>
-    <div class="row mt-5">
-        <div class="col-12 ml-3">
-            <h4>Education</h4>
-            <p>{{resume.education}}</p>
-        </div>
-    </div>
-    <div class="row mt-5">
-        <div class="col-12 ml-3">
-            <h4>Experience</h4>
-            <p>{{resume.experience}}</p>
+        <div class="row mt-5">
+            <div class="col-12 ml-3">
+                <h4>Experience</h4>
+                <p>{{resume.experience}}</p>
+            </div>
         </div>
     </div>
 </div>

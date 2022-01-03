@@ -10,7 +10,7 @@ import { ResumesService } from './resumes.service';
   styleUrls: ['./resumes.component.scss']
 })
 export class ResumesComponent implements OnInit {
-  @ViewChild('search', {static: true}) searchTerm: ElementRef;
+  @ViewChild('search', {static: false}) searchTerm: ElementRef;
   resumes: IResume[];
   categories: IResumeCategory[];
   resumeParams = new ResumesParams();

@@ -6,7 +6,7 @@ import { JobDetailsComponent } from './job-details/job-details.component';
 const routes: Routes = 
 [
   {path: '', component: JobsComponent},
-  {path: ':id', component: JobDetailsComponent},
+  {path: ':id', component: JobDetailsComponent, data: {breadcrumb: {alias: 'jobDetails'}}},
 ];
 
 @NgModule({

@@ -6,7 +6,7 @@ import { ResumeDetailsComponent } from './resume-details/resume-details.componen
 const routes: Routes =
 [
   {path: '', component: ResumesComponent},
-  {path: ':id', component: ResumeDetailsComponent}
+  {path: ':id', component: ResumeDetailsComponent, data: {breadcrumb: {alias: 'resumeDetails'}}}
 ];
 
 @NgModule({

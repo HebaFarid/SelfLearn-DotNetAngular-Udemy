@@ -10,7 +10,7 @@ import { JobsService } from './jobs.service';
   styleUrls: ['./jobs.component.scss']
 })
 export class JobsComponent implements OnInit {
-  @ViewChild('search', {static: true}) searchTerm: ElementRef;
+  @ViewChild('search', {static: false}) searchTerm: ElementRef;
   jobs: IJob[];
   categories: IJobCategory[];
   jobParams = new JobsParams();
